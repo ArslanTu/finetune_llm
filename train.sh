@@ -1,0 +1,22 @@
+CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun --nproc_per_node=4 train.py \
+--model_name_or_path "internlm/internlm-chat-7b" \
+--data_func_name  "load_belle_open_source_500k" \
+--data_path "./data/Belle_open_source_0.5M.json" \
+--train_size 20000 \
+--test_size 200 \
+--quantization "8bit" \
+--half true \
+--output_dir ./output \
+--seed 42 \
+--num_train_epochs 1 \
+--per_device_train_batch_size 1 \
+--per_device_eval_batch_size 1 \
+--gradient_accumulation_steps 16 \
+--logging_steps 10 \
+--save_strategy epoch \
+--save_total_limit 3 \
+--optim adamw_torch \
+--ddp_find_unused_parameters false \
+--report_to wandb \
+--run_name ft_internlm \
+2>&1 | tee log/train.log
