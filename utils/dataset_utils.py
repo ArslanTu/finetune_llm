@@ -9,6 +9,21 @@ def load_sharegpt_20230401_clean_lang_split_126k(
         data_path: str,
         max_len=2048,
         num_proc: int=1):
+    """
+    Load the sharegpt_20230401_clean_lang_split_126k dataset, and tokenize it with the given tokenizer.
+
+    Download data file with:
+    https://huggingface.co/datasets/philschmid/sharegpt-raw/resolve/main/sharegpt_20230401_clean_lang_split.json
+
+    Args:
+        tokenizer (_type_): tokenizer
+        data_path (str): data path
+        max_len (int, optional): max token length. Defaults to 2048.
+        num_proc (int, optional): number of process. Defaults to 1.
+
+    Returns:
+        _type_: dataset
+    """
     logger.debug(f"Load , sharegpt_20230401_clean_lang_split_126k, max_len: {max_len}, num_proc: {num_proc}")
     def tokenize(prompt, add_eos_token=True):
         result = tokenizer(

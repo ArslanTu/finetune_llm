@@ -81,7 +81,7 @@ def load_model(
     #         model_dtype =  torch.float16
     #     else:
     #         model_dtype = torch.bfloat16
-    if  half:
+    if half:
         model_dtype = torch.float16
     logger.debug(f"set model_dtype to {model_dtype}")
     
@@ -116,7 +116,7 @@ def load_model(
             lora_path,
             device_map=lora_device_map,
         )
-    
+    # FIXME: half after load in fp16?
     # if half and quantization is not None:
     #     logger.debug(f"convert model to half precision")
     #     model.half()
